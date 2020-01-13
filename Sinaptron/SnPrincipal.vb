@@ -393,25 +393,25 @@ Public Class SnPrincipal
             If snFormat.CM = "B4" And snFormat.A1 = "23" And snFormat.A0 = "FF" Then
                 TiempoPre = snFormat.D0
 
-                If Flag4 = True Then
+                If Flag1 = True Then
                     txtRed.Text = snFormat.D0
-                    Flag4 = False
+                    Flag1 = False
                     If FlagPrevNext = True Then
                         Threading.Thread.Sleep(500)
                         SendTiempos("rojo")
                     End If
                     ' Flag5 = True
-                ElseIf Flag5 = True Then
+                ElseIf Flag2 = True Then
                     txtAmbar.Text = snFormat.D0
-                    Flag5 = False
+                    Flag2 = False
                     If FlagPrevNext = True Then
                         Threading.Thread.Sleep(500)
                         SendTiempos("amarillo")
                     End If
-                ElseIf Flag6 = True Then
+                ElseIf Flag3 = True Then
 
                     txtGreen.Text = snFormat.D0
-                    Flag6 = False
+                    Flag3 = False
                     If FlagPrevNext = True Then
                         Threading.Thread.Sleep(500)
                         SendTiempos("verde")
@@ -586,6 +586,7 @@ Public Class SnPrincipal
         'Flag4 = True
         ' tmrRojo.Enabled = False
         ' tmrRojo.Enabled = True
+        Flag1 = True
         ConsultarTiempos("rojo", False)
     End Sub
 
@@ -593,28 +594,28 @@ Public Class SnPrincipal
     Private Sub btnTiempoAmarillo_Click(sender As Object, e As EventArgs) Handles btnTiempoAmarillo.Click
         Log.Guardar("Consultó tiempo del amarillo")
         ConsultarTiempos("amarillo", False)
-        Flag5 = True
+        Flag2 = True
     End Sub
 
     Private Sub btnTiempoVerde_Click(sender As Object, e As EventArgs) Handles btnTiempoVerde.Click
         Log.Guardar("Consultó tiempo del verde")
         ConsultarTiempos("verde", False)
-        Flag6 = True
+        Flag3 = True
     End Sub
     Private Sub ConsultarTiempos(Color As String, Permiso As Boolean)
         'determina si  se hace la consulta  pre y post del envio de tiempos
         FlagPrevNext = Permiso
         If Color = "rojo" Then
             txtRed.Text = "0"
-            Flag4 = True
+            Flag1 = True
         End If
         If Color = "amarillo" Then
             txtAmbar.Text = "0"
-            Flag5 = True
+            Flag2 = True
         End If
         If Color = "verde" Then
             txtGreen.Text = "0"
-            Flag6 = True
+            Flag3 = True
         End If
         LimitTime = 15
         PositionSn()
@@ -662,15 +663,15 @@ Public Class SnPrincipal
 
         If LimitTime > 0 Then
 
-            If (Flag4 = True) Then
+            If (Flag1 = True) Then
                 data = "-" + posicionX0.PadLeft(2, "0") + posicionY0.PadLeft(2, "0") + posicionX1.PadLeft(2, "0") + posicionY1.PadLeft(2, "0") + posicionX2.PadLeft(2, "0") + posicionY2.PadLeft(2, "0") + "FFFF" + (datoEE) + "0000842320" + ValRojo1.PadLeft(2, "0") + "000000000000" + (nudLight.Value.ToString()).PadLeft(2, "0") + "0000000000000052."
                 Conexion.DiscardOutBuffer()
                 Conexion.Write(data)
-            ElseIf (Flag5 = True) Then
+            ElseIf (Flag2 = True) Then
                 data = "-" + posicionX0.PadLeft(2, "0") + posicionY0.PadLeft(2, "0") + posicionX1.PadLeft(2, "0") + posicionY1.PadLeft(2, "0") + posicionX2.PadLeft(2, "0") + posicionY2.PadLeft(2, "0") + "FFFF" + (datoEE) + "0000842325" + ValRojo1.PadLeft(2, "0") + "000000000000" + (nudLight.Value.ToString()).PadLeft(2, "0") + "0000000000000052."
                 Conexion.DiscardOutBuffer()
                 Conexion.Write(data)
-            ElseIf (Flag6 = True) Then
+            ElseIf (Flag3 = True) Then
                 data = "-" + posicionX0.PadLeft(2, "0") + posicionY0.PadLeft(2, "0") + posicionX1.PadLeft(2, "0") + posicionY1.PadLeft(2, "0") + posicionX2.PadLeft(2, "0") + posicionY2.PadLeft(2, "0") + "FFFF" + (datoEE) + "0000842323" + ValRojo1.PadLeft(2, "0") + "000000000000" + (nudLight.Value.ToString()).PadLeft(2, "0") + "0000000000000052."
                 Conexion.DiscardOutBuffer()
                 Conexion.Write(data)
