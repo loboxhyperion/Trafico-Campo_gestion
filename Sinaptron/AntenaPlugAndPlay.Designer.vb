@@ -23,12 +23,14 @@ Partial Class AntenaPlugAndPlay
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AntenaPlugAndPlay))
         Me.lblTimeOut = New System.Windows.Forms.Label()
         Me.lblMessageAntena = New System.Windows.Forms.Label()
         Me.Conexion = New System.IO.Ports.SerialPort(Me.components)
         Me.tmrPuertoCom = New System.Windows.Forms.Timer(Me.components)
         Me.tmrEscuchando = New System.Windows.Forms.Timer(Me.components)
         Me.tmrContador = New System.Windows.Forms.Timer(Me.components)
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'lblTimeOut
@@ -65,12 +67,26 @@ Partial Class AntenaPlugAndPlay
         '
         Me.tmrContador.Interval = 1000
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.White
+        Me.Label1.Location = New System.Drawing.Point(38, 330)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(21, 29)
+        Me.Label1.TabIndex = 182
+        Me.Label1.Text = "-"
+        '
         'AntenaPlugAndPlay
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(204, Byte), Integer))
+        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(800, 417)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.lblTimeOut)
         Me.Controls.Add(Me.lblMessageAntena)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -88,4 +104,5 @@ Partial Class AntenaPlugAndPlay
     Friend WithEvents tmrPuertoCom As Timer
     Friend WithEvents tmrEscuchando As Timer
     Friend WithEvents tmrContador As Timer
+    Friend WithEvents Label1 As Label
 End Class

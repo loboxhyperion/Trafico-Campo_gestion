@@ -12,4 +12,14 @@ Public Class ConexioDb
 
         Return col
     End Function
+    Public Shared Function ConexionRemota(Collecion) As IMongoCollection(Of BsonDocument)
+        Dim ConnectionString = "mongodb://admin:admin1@ds033559.mlab.com:33559/semaforos" 'mongodb://localhost/" '"mongodb://admin:admin1@ds033559.mlab.com:33559/semaforos" '"mongodb://<dbuser>:<dbpassword>@ds033559.mlab.com:33559/semaforos" 
+        Dim client = New MongoClient(ConnectionString)
+        Dim db = client.GetDatabase("semaforos")
+
+        Dim col = db.GetCollection(Of BsonDocument)(Collecion)
+
+
+        Return col
+    End Function
 End Class

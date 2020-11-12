@@ -219,6 +219,33 @@ Public Class SnPrincipal
     '///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     '///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     '///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    Private Sub tmrPuertoCom_Tick(sender As Object, e As EventArgs) Handles tmrPuertoCom.Tick
+        Try
+            For Each sp As String In My.Computer.Ports.SerialPortNames
+                comPORT = sp
+                'If Not ComPortList.Contains(sp) Then
+                'ComPortList.Add(sp)
+                'cboxPuerto.Items.Add(sp)
+                'End If
+                If comPORT <> "" Then
+                    Conexion.Close()
+                    Conexion.PortName = comPORT
+                    Conexion.Open()
+
+
+                    Timer1.Enabled = True
+
+                    Conexion.Write("?")
+                    Conexion.DiscardInBuffer()
+
+                End If
+                Console.WriteLine(comPORT)
+            Next
+        Catch ex As Exception
+            Console.WriteLine("Sin CONEXION")
+        End Try
+    End Sub
+
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         Try
             receivedData = ReceiveSerialData()
@@ -226,7 +253,10 @@ Public Class SnPrincipal
             If receivedData.Length <> 0 Then
                 Console.WriteLine(receivedData.Length)
             End If
-
+            If Len(receivedData) = 4 Then
+                picEstadoPort.BackColor = Color.LimeGreen
+                tmrPuertoCom.Enabled = False
+            End If
 
             If receivedData <> "" Then
                 If Len(receivedData) >= 32 And Len(receivedData) <= 66 And Mid(receivedData, 1, 2) = "RF" And Mid(receivedData, 28, 4) <> "2330" Then
@@ -263,8 +293,10 @@ Public Class SnPrincipal
                 receivedData = ""
             End If
         Catch ex As Exception
-            ' Timer1.Enabled = False
-            ' MessageBox.Show("SE PERDIO LA CONEXIÓN CON LA ANTENA")
+            Timer1.Enabled = False
+            picEstadoPort.BackColor = Color.Red
+            MessageBox.Show("SE PERDIO LA CONEXION CON LA ANTENA")
+            tmrPuertoCom.Enabled = True
             'Me.Close()
         End Try
 
@@ -1067,135 +1099,7 @@ Public Class SnPrincipal
         End Try
     End Sub
 
-    Private Sub tmrPuertoCom_Tick(sender As Object, e As EventArgs) Handles tmrPuertoCom.Tick
-        Try
-            For Each sp As String In My.Computer.Ports.SerialPortNames
-                comPORT = sp
-                'If Not ComPortList.Contains(sp) Then
-                'ComPortList.Add(sp)
-                'cboxPuerto.Items.Add(sp)
-                'End If
-                If comPORT <> "" Then
-                    Conexion.Close()
-                    Conexion.PortName = comPORT
-                    Conexion.Open()
 
-                    picEstadoPort.BackColor = Color.LimeGreen
-                    Timer1.Enabled = True
-
-                    Conexion.Write("?")
-                    Conexion.DiscardInBuffer()
-                    tmrPuertoCom.Enabled = False
-                    ' tmrTryPort.Enabled = True
-                End If
-                Console.WriteLine(comPORT)
-            Next
-        Catch ex As Exception
-            Console.WriteLine("Sin CONEXION")
-        End Try
-    End Sub
-
-
-
-    Dim MarkersCount As Integer = -1
-
-
-
-
-
-    Private Async Function ConsultarSnInfo(item As GMapMarker) As Task
-        'Conexion a la base de datos
-        Dim col = ConexioDb.Conexion("sinaptron", False)
-
-        Using cursor = Await col.Find(New BsonDocument).ToCursorAsync
-            While (Await cursor.MoveNextAsync())
-                For Each doc In cursor.Current
-                    If item.Position.Lat = doc("Lat") And item.Position.Lng = doc("Long") Then
-                        'Console.WriteLine(doc("Lat").ToString & " " & doc("Long").ToString)
-
-                        '  Dim local = GMapControl1.FromLatLngToLocal(New PointLatLng(item.Position.Lat, item.Position.Lng))
-
-                        Dim snControl As New snControl(doc("Lat"), doc("Long"), item.Overlay, True, MarkersCount)
-                        snControl.Show()
-                        ' snControl.Location = New Point(local.X + 20, local.Y - 100)
-                        snControl.txtRef.Text = doc("Ref")
-                        snControl.txtSnX.Text = doc("SnX")
-                        snControl.txtSnY.Text = doc("SnY")
-                        snControl.txtDir.Text = doc("Direccion").ToString
-                        snControl.txtCall.Text = doc("Calle").ToString
-                        snControl.txtCarr.Text = doc("Carrera").ToString
-
-                        snControl.btnEditar.Enabled = True
-                        snControl.EliminarSinap.Enabled = True
-                    End If
-                Next
-            End While
-        End Using
-
-    End Function
-
-    Private Async Function ConsultarTodo() As Task
-        'Conexion a la base de datos
-        Dim col = ConexioDb.Conexion("sinaptron", False)
-
-        Using cursor = Await col.Find(New BsonDocument).ToCursorAsync
-            While (Await cursor.MoveNextAsync())
-                For Each doc In cursor.Current
-                    MarkersCount += 1
-
-                    Dim Point As New PointLatLng(doc("Lat"), doc("Long"))
-                    CreateMarker(Point)
-                Next
-            End While
-        End Using
-
-    End Function
-
-    Function CreateMarker(point As PointLatLng) As GMapOverlay
-        'Creating a custom marker
-        Dim bmpMarker As Bitmap
-        bmpMarker = Image.FromFile("..\..\img\marker.png")
-        'Adding Marker
-        'Create a Overlay
-        Dim markers As New GMapOverlay("markers")
-
-
-        Dim marker As GMapMarker = New GMarkerGoogle(point, bmpMarker)
-        ' marker.ToolTipText = $"Latitude: {GMapControl1.Position.Lat},{vbLf} Longitude: {GMapControl1.Position.Lng}"
-        'add all available markers to that Overlay
-        markers.Markers.Add(marker)
-        'Cover map with Overlay
-
-        Return markers
-    End Function
-
-
-    Private Sub GMapControl1_MouseDoubleClick(sender As Object, e As MouseEventArgs)
-
-        '  GMapControl1.Refresh()
-        'Console.WriteLine(e.X & " " & e.Y)
-        '  Dim point = GMapControl1.FromLocalToLatLng(e.X, e.Y)
-
-
-        'Console.WriteLine("lat:" & point.Lat & " long:" & point.Lng)
-        'Console.WriteLine("x:" & local.X & " y:" & local.Y)
-
-        ' Console.WriteLine(GMapControl1.Zoom)
-        ' GMapControl1.MapProvider = GMapProviders.GoogleMap
-        ' GMapControl1.Position = New PointLatLng(point.Lat, point.Lng)
-
-        'GMapControl1.Zoom = 19
-        'CreateMarker(point)
-
-        ' GMapControl1.Overlays.Clear()
-        ' ConsultarTodo()
-        ' GMapControl1.Enabled = False
-        ' Dim snControl As New snControl(point.Lat, point.Lng, CreateMarker(point), False, MarkersCount)
-        ' snControl.Show()
-        'snControl.Location = New Point(e.X - 20, e.Y - 20)
-        'snControl.CrearSinap.Enabled = True
-
-    End Sub
 
 
     Private Sub nudLight_ValueChanged(sender As Object, e As EventArgs) Handles nudLight.ValueChanged
@@ -1281,5 +1185,14 @@ Public Class SnPrincipal
         Else
             MsgBox("No es posible hacer cambios porque El internet no esta habilitado", MsgBoxStyle.Critical)
         End If
+    End Sub
+
+    Private Sub btnProgramVerd_Click(sender As Object, e As EventArgs) Handles btnProgramVerd.Click
+        ProgramVerdes.Show()
+    End Sub
+
+    Private Sub btnHistorialEnergia_Click(sender As Object, e As EventArgs) Handles btnHistorialEnergia.Click
+        ' Dim historialEnergia As New HistorialEnergia("")
+        ' historialEnergia.Show()
     End Sub
 End Class

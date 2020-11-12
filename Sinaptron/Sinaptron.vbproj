@@ -54,6 +54,9 @@
     <Reference Include="AjaxMin, Version=5.14.5506.26196, Culture=neutral, PublicKeyToken=21ef50ce11b5d80f, processorArchitecture=MSIL">
       <HintPath>..\packages\AjaxMin.5.14.5506.26202\lib\net40\AjaxMin.dll</HintPath>
     </Reference>
+    <Reference Include="Bunifu_UI_v1.52">
+      <HintPath>..\..\..\..\..\Documents\Material Dashboard Rhaegar Code\Bunifu\Bunifu_UI_v1.52.dll</HintPath>
+    </Reference>
     <Reference Include="Crc32C.NET, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Crc32C.NET.1.0.5.0\lib\net20\Crc32C.NET.dll</HintPath>
     </Reference>
@@ -73,6 +76,11 @@
     </Reference>
     <Reference Include="GMap.NET.WindowsPresentation, Version=1.9.5.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
       <HintPath>..\packages\GMap.NET.Windows.1.9.5\lib\net40\GMap.NET.WindowsPresentation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\..\..\Documents\Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic.PowerPacks">
       <HintPath>..\..\..\Proyectos\traffic\traffic\bin\Debug\Microsoft.VisualBasic.PowerPacks.dll</HintPath>
@@ -126,6 +134,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -161,15 +170,53 @@
     <Compile Include="AntenaPlugAndPlay.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="CambiarClave.Designer.vb">
+      <DependentUpon>CambiarClave.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CambiarClave.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Class\Ubicacion.vb" />
+    <Compile Include="Class\UsuarioClave.vb" />
+    <Compile Include="Interfaces\SubMenus\TipoConfigSubMenu.Designer.vb">
+      <DependentUpon>TipoConfigSubMenu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\SubMenus\TipoConfigSubMenu.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Tabs\Pruebas\BasicoTab.Designer.vb">
+      <DependentUpon>BasicoTab.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Tabs\Pruebas\BasicoTab.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Class\ConexioDb.vb" />
     <Compile Include="Class\ConexionSerial.vb" />
     <Compile Include="Class\Logs.vb" />
     <Compile Include="Class\Permisos.vb" />
     <Compile Include="Comandos\comandos.vb" />
-    <Compile Include="DataBaseForm.Designer.vb">
-      <DependentUpon>DataBaseForm.vb</DependentUpon>
+    <Compile Include="Interfaces\Tabs\Operacion\ConsultasTab.Designer.vb">
+      <DependentUpon>ConsultasTab.vb</DependentUpon>
     </Compile>
-    <Compile Include="DataBaseForm.vb">
+    <Compile Include="Interfaces\Tabs\Operacion\ConsultasTab.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Menus\DatosMenu.Designer.vb">
+      <DependentUpon>DatosMenu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Menus\DatosMenu.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Menus\DireccionesMenu.Designer.vb">
+      <DependentUpon>DireccionesMenu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Menus\DireccionesMenu.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Tabs\Setup\DispositivoConfigTab.Designer.vb">
+      <DependentUpon>DispositivoConfigTab.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Tabs\Setup\DispositivoConfigTab.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ErrorAntenaForm.Designer.vb">
@@ -178,10 +225,34 @@
     <Compile Include="ErrorAntenaForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GeoRef.Designer.vb">
-      <DependentUpon>GeoRef.vb</DependentUpon>
+    <Compile Include="Interfaces\Tabs\Operacion\EstadoBateriaSinaptronTab.Designer.vb">
+      <DependentUpon>EstadoBateriaSinaptronTab.vb</DependentUpon>
     </Compile>
-    <Compile Include="GeoRef.vb">
+    <Compile Include="Interfaces\Tabs\Operacion\EstadoBateriaSinaptronTab.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Tabs\Operacion\FuncionalidadTab.Designer.vb">
+      <DependentUpon>FuncionalidadTab.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Tabs\Operacion\FuncionalidadTab.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Tabs\Operacion\HistorialEnergiaTab.Designer.vb">
+      <DependentUpon>HistorialEnergiaTab.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Tabs\Operacion\HistorialEnergiaTab.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Tabs\Setup\InterseccionConfigTab.Designer.vb">
+      <DependentUpon>InterseccionConfigTab.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Tabs\Setup\InterseccionConfigTab.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Tabs\Setup\MapaConfig.Designer.vb">
+      <DependentUpon>MapaConfig.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Tabs\Setup\MapaConfig.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LoginForm.Designer.vb">
@@ -190,22 +261,75 @@
     <Compile Include="LoginForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Interfaces\Tabs\Setup\MapaTab.Designer.vb">
+      <DependentUpon>MapaTab.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Tabs\Setup\MapaTab.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Models\DeserializeFormat.vb" />
+    <Compile Include="Models\Energia.vb" />
+    <Compile Include="Models\Interseccion1.vb" />
     <Compile Include="Models\Log.vb" />
     <Compile Include="Models\Login.vb" />
     <Compile Include="Models\Nodo.vb" />
     <Compile Include="Models\Sinaptron.vb" />
-    <Compile Include="Registrar.Designer.vb">
-      <DependentUpon>Registrar.vb</DependentUpon>
+    <Compile Include="Modules\Create_Directory_File.vb" />
+    <Compile Include="Modules\ExportarExcel.vb" />
+    <Compile Include="Modules\SaveData.vb" />
+    <Compile Include="Interfaces\Menus\OperacionesMenu.Designer.vb">
+      <DependentUpon>OperacionesMenu.vb</DependentUpon>
     </Compile>
-    <Compile Include="Registrar.vb">
+    <Compile Include="Interfaces\Menus\OperacionesMenu.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrimeraClave.Designer.vb">
+      <DependentUpon>PrimeraClave.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PrimeraClave.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgramVerdes.Designer.vb">
+      <DependentUpon>ProgramVerdes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramVerdes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Menus\PruebasMenu.Designer.vb">
+      <DependentUpon>PruebasMenu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Menus\PruebasMenu.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Tabs\Pruebas\PruebasTab.Designer.vb">
+      <DependentUpon>PruebasTab.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Tabs\Pruebas\PruebasTab.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Class\ServidorConexion.vb" />
+    <Compile Include="Interfaces\SubMenus\RegistrosMenu.Designer.vb">
+      <DependentUpon>RegistrosMenu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\SubMenus\RegistrosMenu.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Menus\SetupMenu.Designer.vb">
+      <DependentUpon>SetupMenu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Menus\SetupMenu.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="snControl.Designer.vb">
       <DependentUpon>snControl.vb</DependentUpon>
     </Compile>
     <Compile Include="snControl.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SnGestion.Designer.vb">
+      <DependentUpon>SnGestion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SnGestion.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SnPrincipal.vb">
@@ -230,31 +354,82 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="split.Designer.vb">
-      <DependentUpon>split.vb</DependentUpon>
-    </Compile>
-    <Compile Include="split.vb">
-      <SubType>Form</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AntenaPlugAndPlay.resx">
       <DependentUpon>AntenaPlugAndPlay.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DataBaseForm.resx">
-      <DependentUpon>DataBaseForm.vb</DependentUpon>
+    <EmbeddedResource Include="CambiarClave.resx">
+      <DependentUpon>CambiarClave.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaces\SubMenus\TipoConfigSubMenu.resx">
+      <DependentUpon>TipoConfigSubMenu.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaces\Tabs\Pruebas\BasicoTab.resx">
+      <DependentUpon>BasicoTab.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaces\Tabs\Operacion\ConsultasTab.resx">
+      <DependentUpon>ConsultasTab.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaces\Menus\DatosMenu.resx">
+      <DependentUpon>DatosMenu.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaces\Menus\DireccionesMenu.resx">
+      <DependentUpon>DireccionesMenu.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaces\Tabs\Setup\DispositivoConfigTab.resx">
+      <DependentUpon>DispositivoConfigTab.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ErrorAntenaForm.resx">
       <DependentUpon>ErrorAntenaForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Interfaces\Tabs\Operacion\EstadoBateriaSinaptronTab.resx">
+      <DependentUpon>EstadoBateriaSinaptronTab.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaces\Tabs\Operacion\FuncionalidadTab.resx">
+      <DependentUpon>FuncionalidadTab.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaces\Tabs\Operacion\HistorialEnergiaTab.resx">
+      <DependentUpon>HistorialEnergiaTab.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaces\Tabs\Setup\InterseccionConfigTab.resx">
+      <DependentUpon>InterseccionConfigTab.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaces\Tabs\Setup\MapaConfig.resx">
+      <DependentUpon>MapaConfig.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Registrar.resx">
-      <DependentUpon>Registrar.vb</DependentUpon>
+    <EmbeddedResource Include="Interfaces\Tabs\Setup\MapaTab.resx">
+      <DependentUpon>MapaTab.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaces\Menus\OperacionesMenu.resx">
+      <DependentUpon>OperacionesMenu.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrimeraClave.resx">
+      <DependentUpon>PrimeraClave.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgramVerdes.resx">
+      <DependentUpon>ProgramVerdes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaces\Menus\PruebasMenu.resx">
+      <DependentUpon>PruebasMenu.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaces\Tabs\Pruebas\PruebasTab.resx">
+      <DependentUpon>PruebasTab.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaces\SubMenus\RegistrosMenu.resx">
+      <DependentUpon>RegistrosMenu.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaces\Menus\SetupMenu.resx">
+      <DependentUpon>SetupMenu.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="snControl.resx">
       <DependentUpon>snControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SnGestion.resx">
+      <DependentUpon>SnGestion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SnPrincipal.resx">
       <DependentUpon>SnPrincipal.vb</DependentUpon>
@@ -264,9 +439,6 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="split.resx">
-      <DependentUpon>split.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -290,6 +462,18 @@
     <Content Include="img\TrafficOff.png" />
     <Content Include="img\TrafficOn.png" />
     <Content Include="img\Yellow.png" />
+    <None Include="Resources\interamarillaoff.png" />
+    <None Include="Resources\interamarilla.png" />
+    <None Include="Resources\interroja.png" />
+    <None Include="Resources\interrojaoff.png" />
+    <None Include="Resources\ARROW DASHBOARD CONTRAER.png" />
+    <None Include="Resources\ARROW DASHBOARD EXPANDIR.png" />
+    <None Include="Resources\warning_top.png" />
+    <None Include="Resources\warning_level.png" />
+    <None Include="Resources\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

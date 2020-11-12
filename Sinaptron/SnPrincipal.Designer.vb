@@ -166,6 +166,8 @@ Partial Class SnPrincipal
         Me.picS1 = New System.Windows.Forms.PictureBox()
         Me.tmrSimulacion = New System.Windows.Forms.Timer(Me.components)
         Me.btnCambiosRemoto = New System.Windows.Forms.Button()
+        Me.btnProgramVerd = New System.Windows.Forms.Button()
+        Me.btnHistorialEnergia = New System.Windows.Forms.Button()
         Me.GroupBox3.SuspendLayout()
         CType(Me.picEstadoPort, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1057,6 +1059,7 @@ Partial Class SnPrincipal
         'TabPage7
         '
         Me.TabPage7.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(57, Byte), Integer), CType(CType(67, Byte), Integer))
+        Me.TabPage7.Controls.Add(Me.btnHistorialEnergia)
         Me.TabPage7.Controls.Add(Me.Label19)
         Me.TabPage7.Controls.Add(Me.groupBox27)
         Me.TabPage7.Controls.Add(Me.Label12)
@@ -1234,10 +1237,10 @@ Partial Class SnPrincipal
         Me.btnBateriaConsulta.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnBateriaConsulta.ForeColor = System.Drawing.Color.White
         Me.btnBateriaConsulta.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.btnBateriaConsulta.Location = New System.Drawing.Point(21, 283)
+        Me.btnBateriaConsulta.Location = New System.Drawing.Point(9, 283)
         Me.btnBateriaConsulta.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.btnBateriaConsulta.Name = "btnBateriaConsulta"
-        Me.btnBateriaConsulta.Size = New System.Drawing.Size(214, 25)
+        Me.btnBateriaConsulta.Size = New System.Drawing.Size(122, 25)
         Me.btnBateriaConsulta.TabIndex = 222
         Me.btnBateriaConsulta.Text = "CONSULTAR"
         Me.btnBateriaConsulta.UseVisualStyleBackColor = False
@@ -1410,10 +1413,10 @@ Partial Class SnPrincipal
         Me.btnLimpiar.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnLimpiar.ForeColor = System.Drawing.Color.White
         Me.btnLimpiar.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.btnLimpiar.Location = New System.Drawing.Point(1188, 682)
+        Me.btnLimpiar.Location = New System.Drawing.Point(1188, 684)
         Me.btnLimpiar.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.btnLimpiar.Name = "btnLimpiar"
-        Me.btnLimpiar.Size = New System.Drawing.Size(151, 40)
+        Me.btnLimpiar.Size = New System.Drawing.Size(151, 33)
         Me.btnLimpiar.TabIndex = 209
         Me.btnLimpiar.Text = "LIMPIAR"
         Me.btnLimpiar.UseVisualStyleBackColor = False
@@ -1445,10 +1448,10 @@ Partial Class SnPrincipal
         '
         Me.TabControl3.Controls.Add(Me.TabPage1)
         Me.TabControl3.Controls.Add(Me.TabPage3)
-        Me.TabControl3.Location = New System.Drawing.Point(12, 610)
+        Me.TabControl3.Location = New System.Drawing.Point(172, 610)
         Me.TabControl3.Name = "TabControl3"
         Me.TabControl3.SelectedIndex = 0
-        Me.TabControl3.Size = New System.Drawing.Size(1170, 112)
+        Me.TabControl3.Size = New System.Drawing.Size(1010, 112)
         Me.TabControl3.TabIndex = 214
         '
         'TabPage1
@@ -1458,7 +1461,7 @@ Partial Class SnPrincipal
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1162, 86)
+        Me.TabPage1.Size = New System.Drawing.Size(1002, 86)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Acciones"
         '
@@ -1469,7 +1472,7 @@ Partial Class SnPrincipal
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(1162, 86)
+        Me.TabPage3.Size = New System.Drawing.Size(1002, 86)
         Me.TabPage3.TabIndex = 1
         Me.TabPage3.Text = "Eventos"
         '
@@ -2061,12 +2064,45 @@ Partial Class SnPrincipal
         Me.btnCambiosRemoto.Text = "SINCRONIZAR A GESTIÓN"
         Me.btnCambiosRemoto.UseVisualStyleBackColor = False
         '
+        'btnProgramVerd
+        '
+        Me.btnProgramVerd.BackColor = System.Drawing.Color.ForestGreen
+        Me.btnProgramVerd.FlatAppearance.BorderSize = 0
+        Me.btnProgramVerd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnProgramVerd.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnProgramVerd.ForeColor = System.Drawing.Color.White
+        Me.btnProgramVerd.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.btnProgramVerd.Location = New System.Drawing.Point(11, 610)
+        Me.btnProgramVerd.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.btnProgramVerd.Name = "btnProgramVerd"
+        Me.btnProgramVerd.Size = New System.Drawing.Size(151, 112)
+        Me.btnProgramVerd.TabIndex = 218
+        Me.btnProgramVerd.Text = "PROGRAMAR VERDES"
+        Me.btnProgramVerd.UseVisualStyleBackColor = False
+        '
+        'btnHistorialEnergia
+        '
+        Me.btnHistorialEnergia.BackColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(56, Byte), Integer), CType(CType(180, Byte), Integer))
+        Me.btnHistorialEnergia.FlatAppearance.BorderSize = 0
+        Me.btnHistorialEnergia.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnHistorialEnergia.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnHistorialEnergia.ForeColor = System.Drawing.Color.White
+        Me.btnHistorialEnergia.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.btnHistorialEnergia.Location = New System.Drawing.Point(134, 283)
+        Me.btnHistorialEnergia.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.btnHistorialEnergia.Name = "btnHistorialEnergia"
+        Me.btnHistorialEnergia.Size = New System.Drawing.Size(115, 25)
+        Me.btnHistorialEnergia.TabIndex = 242
+        Me.btnHistorialEnergia.Text = "HISTORIAL"
+        Me.btnHistorialEnergia.UseVisualStyleBackColor = False
+        '
         'SnPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(32, Byte), Integer), CType(CType(40, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1350, 729)
+        Me.Controls.Add(Me.btnProgramVerd)
         Me.Controls.Add(Me.btnCambiosRemoto)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.btnLimpiar)
@@ -2271,4 +2307,6 @@ Partial Class SnPrincipal
     Friend WithEvents Label20 As Label
     Friend WithEvents tmrSimulacion As Timer
     Friend WithEvents btnCambiosRemoto As Button
+    Friend WithEvents btnProgramVerd As Button
+    Friend WithEvents btnHistorialEnergia As Button
 End Class

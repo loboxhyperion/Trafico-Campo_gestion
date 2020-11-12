@@ -11,14 +11,6 @@ Public Class AntenaPlugAndPlay
         '//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         comPORT = ""
         ConexionSerial.Configuracion(Conexion)
-        'Conexion.BaudRate = 19200
-        'Conexion.DataBits = 8
-        ' Conexion.Parity = Parity.None
-        ' Conexion.StopBits = StopBits.One
-        ' Conexion.Handshake = Handshake.None
-        ' Conexion.Encoding = System.Text.Encoding.Default 'very important!
-        ' Conexion.ReadTimeout = 1000
-
     End Sub
 
     'COMPROBACIÓN DE PUERTOS //////////////////////////////////////////////////////////////////////////////////////////////
@@ -75,7 +67,7 @@ Public Class AntenaPlugAndPlay
             Conexion.DiscardInBuffer()
 
             If receivedData <> "" Then
-                If Len(receivedData) = 27 Then
+                If Len(receivedData) = 27 Or Len(receivedData) = 4 Then
                     Dim Mac As String
                     Mac = getMacAddress()
                     'If Mac = Mid(receivedData, 15, 12) Then
@@ -88,12 +80,13 @@ Public Class AntenaPlugAndPlay
                     'Permite que se cierre el formulario cuando se cierre el segundo
                     Me.Owner = LoginForm
                     Me.Hide()
-                    'Else
+                    ' Else
+                    'Label1.Text = "Incorrecto"
                     ' MsgBox("Incorrecto")
                     ' End If
                 End If
 
-                End If
+            End If
         Catch ex As Exception
             Console.WriteLine(ex)
             Console.WriteLine("se desconecto la antena")
